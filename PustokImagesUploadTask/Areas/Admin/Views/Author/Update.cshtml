@@ -1,0 +1,15 @@
+﻿@model Author
+
+
+<div class="container-fluid">
+    <h1 style="text-align:center">Update Author</h1>
+
+    <form method="post" asp-action="update">
+                <div class="mb-3 col-md-3 pt-3 pb-3">
+                    <label asp-for="Name" class="form-label">FullName</label>
+            <input asp-for="Name" class="form-control" placeholder="FullName">
+            <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>

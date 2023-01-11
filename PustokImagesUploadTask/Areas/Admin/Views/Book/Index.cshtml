@@ -1,0 +1,49 @@
+﻿@model List<Book>
+@{
+    int counter = 0;
+}
+
+<div class="container">
+
+    <div class="container">
+        <div>
+            <h1 style="text-align:center">Books</h1>
+        </div>
+    </div>
+
+    <div class="container-fluid pt-3">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">SalePrice</th>
+                    <th scope="col">Discount</th>
+                    
+                    <th scope="col"> <a asp-controller="Book" asp-action="create" class="btn btn-primary">Create</a> </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Book sl in Model)
+                {
+                    counter++;
+                    <tr>
+                        <th scope="row">@counter</th>
+                        <td>@sl.Id</td>
+                        <td>@sl.Name</td>
+                        <td>@sl.SalePrice</td>
+                        <td>@sl.DiscountPrice</td>
+                        
+                        <td>
+                            <a asp-controller="Book" asp-action="update" asp-route-id="@sl.Id" a class="btn btn-success">Update</a>
+                            <a asp-controller="Book" asp-action="delete" asp-route-id="@sl.Id" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+

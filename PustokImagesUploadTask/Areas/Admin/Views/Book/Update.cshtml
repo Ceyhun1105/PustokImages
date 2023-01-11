@@ -1,0 +1,130 @@
+﻿@model Book
+
+
+<div class="container-fluid">
+    <h1 style="text-align:center">Update Book</h1>
+
+    <form method="post" asp-action="update" enctype="multipart/form-data">
+        <div class="row align-items-center">
+
+
+            <div class="mb-3 col-md-3">
+                <label asp-for="Name" class="form-label">Name</label>
+                <input asp-for="Name" class="form-control" placeholder="Name">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-3">
+                <label asp-for="Code" class="form-label">Code</label>
+                <input asp-for="Code" class="form-control" placeholder="Code">
+                <span asp-validation-for="Code" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-2">
+                <label asp-for="CostPrice" class="form-label">Costprice</label>
+                <input asp-for="CostPrice" class="form-control" placeholder="Costprice">
+                <span asp-validation-for="CostPrice" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-2">
+                <label asp-for="SalePrice" class="form-label">SalePrice</label>
+                <input asp-for="SalePrice" class="form-control" placeholder="SalePrice">
+                <span asp-validation-for="SalePrice" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-2">
+                <label asp-for="DiscountPrice" class="form-label">DiscountPrice</label>
+                <input asp-for="DiscountPrice" class="form-control" placeholder="DiscountPrice">
+                <span asp-validation-for="DiscountPrice" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3 col-md-4">
+                <label asp-for="Description" class="form-label">Description</label>
+                <textarea class="form-control" asp-for="Description" rows="5" placeholder="Description"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+
+            <div class="mb-3 col-md-4 pt-3">
+                <label asp-for="PosterImage" class="form-label">PosterImage</label>
+                <input asp-for="PosterImage" class="form-control" placeholder="PosterImage">
+                <span asp-validation-for="PosterImage" class="text-danger"></span>
+                <img class="pt-2" width="200px" src="~/uploads/books/@Model.BookImages.FirstOrDefault(x=>x.IsPoster==true).Name" />
+            </div>
+            <div class="mb-3 col-md-4 pt-3">
+                <label asp-for="HoverImage" class="form-label">HoverImage</label>
+                <input asp-for="HoverImage" class="form-control" placeholder="HoverImage">
+                <span asp-validation-for="HoverImage" class="text-danger"></span>
+                <img class="pt-3" width="200px" src="~/uploads/books/@Model.BookImages.FirstOrDefault(x=>x.IsPoster==false).Name" />
+            </div>
+
+
+
+            <div class="row"></div>
+            <div class="mb-3 col-md-6 pt-3">
+                <label asp-for="ImageFiles" class="form-label">Image</label>
+                <input asp-for="ImageFiles" class="form-control" placeholder="Image">
+                <span asp-validation-for="ImageFiles" class="text-danger"></span>
+                <div class="row pt-4">
+                    @foreach (BookImage bookimg in Model.BookImages)
+                    {
+                        <div class="col-3"> <img width="200px" src="~/uploads/books/@bookimg.Name"> </div>
+                    }
+                </div>
+            </div>
+            <div class="mb-3 col-md-6 pt-3" style="margin-top:10%">
+                <div class="row">
+                    <div class="col-12">
+                        <div style=" display: flex; margin-left: 20%;">
+                            <div class="form-check col-md-4 pb-3" style="padding-top: 16px;">
+                                <input class="form-check-input" type="checkbox" checked="" data-val="true" data-val-required="The IsAvalible field is required." id="IsAvalible" name="IsAvalible" value="true">
+                                <label class="form-check-label" for="IsAvalible">
+                                    IsAvalible
+                                </label>
+                            </div>
+                            <div class="form-check col-md-4 pb-3" style="padding-top: 16px;">
+                                <input class="form-check-input" type="checkbox" checked="" data-val="true" data-val-required="The IsFeatured field is required." id="IsFeatured" name="IsFeatured" value="true">
+                                <label class="form-check-label" for="IsFeatured">
+                                    IsFeatured
+                                </label>
+                            </div>
+                            <div class="form-check col-md-4 pb-3" style="padding-top: 16px;">
+                                <input class="form-check-input" type="checkbox" checked="" data-val="true" data-val-required="The IsNew field is required." id="IsNew" name="IsNew" value="true">
+                                <label class="form-check-label" for="IsNew">
+                                    IsNew
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div style="margin-left:16%">
+                            <div class="row pt-4 pb-5">
+                                <div class="col-md-6">
+                                    <label asp-for="AuthorId">Authors</label>
+                                    <select asp-for="AuthorId" asp-items="@(new SelectList(ViewBag.Authors,"Id","Name"))">
+                                    </select>
+                                    <span asp-validation-for="AuthorId" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label asp-for="CategoryId">Categories</label>
+                                    <select asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.Categories,"Id","Name"))">
+                                    </select>
+                                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="pb-5" style="display: flex;justify-content: center;margin-top: 55px;">
+            <button type="submit" class="btn btn-primary" fdprocessedid="c07dy" style="margin-right: 40px;">
+                Update
+            </button>
+            <button type="submit" class="btn btn-danger" fdprocessedid="3oebx" asp-action="index" asp-controller="book">Cancel</button>
+        </div>
+
+    </form>
+</div>
+

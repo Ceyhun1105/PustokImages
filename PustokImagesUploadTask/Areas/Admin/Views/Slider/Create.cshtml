@@ -1,0 +1,56 @@
+﻿@model Slider
+
+
+<div class="container">
+
+    <div class="container">
+        <div>
+            <h1 style="text-align:center; color : black">Create Slider</h1>
+        </div>
+    </div>
+
+
+    <form method="post" enctype="multipart/form-data">
+        <div class="row pt-3">
+
+
+            <div class="mb-3 col-4">
+                <label asp-for="Name" class="form-label">Title1</label>
+                <input class="form-control" asp-for="Name" placeholder="Title1">
+                <span asp-validation-for="Name" style="color:red"></span>
+            </div>
+            <div class="mb-3 col-4">
+                <label asp-for="Name2" class="form-label">Title2</label>
+                <input class="form-control" asp-for="Name2" placeholder="Title2">
+                <span asp-validation-for="Name2" style="color:red"></span>
+            </div>
+            <div class="mb-3 col-4">
+                <label asp-for="Description" class="form-label">Description</label>
+                <input class="form-control" asp-for="Description" placeholder="Description">
+                <span asp-validation-for="Description" style="color:red"></span>
+            </div>
+
+            <div class="mb-3 col-4">
+                <label asp-for="ButtonText" class="form-label">ButtonText</label>
+                <input class="form-control" asp-for="ButtonText" placeholder="ButtonText">
+                <span asp-validation-for="ButtonText" style="color:red"></span>
+            </div>
+            <div class="mb-3 col-4">
+                <label asp-for="RedirectUrl" class="form-label">RedirectUrl</label>
+                <input class="form-control" asp-for="RedirectUrl" placeholder="RedirectUrl">
+                <span asp-validation-for="RedirectUrl" style="color:red"></span>
+            </div>
+            <div class="mb-3 col-4">
+                <label asp-for="ImageFile" class="form-label">ImageFile</label>
+                <input class="form-control" asp-for="ImageFile" placeholder="ImageFile">
+                <span asp-validation-for="ImageFile" style="color:red"></span>
+            </div>
+
+        </div>
+        <button type="submit" class="btn btn-google">Create</button>
+        <button asp-controller="slider" asp-action="index" class="btn btn-facebook">Cancel</button>
+    </form>
+
+
+
+</div>
